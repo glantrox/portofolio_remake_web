@@ -658,7 +658,29 @@
     margin: 50px;
 }
 
+.cards-bp-overlay {
+    visibility: hidden;
+}
+
+.image-cards-bp {
+    background-color: white;
+    border-radius: 13px;
+}
+
+.image-cards-bp:hover img {
+    opacity: 0.3;
+}
+
+.image-cards-bp:hover .cards-bp-overlay {
+    visibility: visible;
+}
+
+.row-of-icons-bp i:hover {
+    color: #FF6969;
+}
+
 .card-projects {
+    
     width: 510px;
     height: 297px;
     background-color: #eaeaea;
@@ -669,7 +691,7 @@
     align-items: center;
     object-fit: cover;
     box-shadow: 0 10px 20px #00000062;
-    transition: .3s;
+    transition: .4s;
 }
 
 @media (max-width: 766px) {
@@ -682,8 +704,12 @@
 
 
 .card-projects:hover {
-
+    filter: blur(0.5rem);
     overflow: hidden;
+}
+
+.texts-bp-overlay h1 {
+    line-height: 78%;
 }
 
 /* Footer */
