@@ -26,6 +26,55 @@
 
 .hamburger {
     display: none;
+    
+}
+
+.bar {
+    transition: .3s;
+}
+.hamburger.active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+
+}
+.hamburger.active .bar:nth-child(2) {
+    opacity: 0;
+}
+.hamburger.active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+.navigations-navbar {
+    transition: .3s;
+    list-style-type: unset;
+    height: 0%;
+}
+
+.navigations-navbar.active {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    justify-content: center;
+    align-items: end;
+    text-align: end;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 8px;
+    box-shadow: 0 10px 50px rgba(0, 0, 0, 0.626);
+    padding: 1%;
+    right: 10%;
+    top: 140px;
+    height: 100%;
+}
+
+.navigations-navbar.active li {
+    font-size: 22px;
+    font-weight: bold;
+    text-shadow: 0 10px 50px rgba(255, 255, 255, 0.626);
+}
+
+.navigations-navbar.active a::after{
+    content: "";
+    height: 3px;
+    width: 20px;
+    background-color: #5d2424;
 }
 
 @media (max-width: 835px) {
@@ -35,6 +84,7 @@
 
     .navigations-navbar {
         display: none;
+        height: 0%;
     }
 
     .hamburger {
@@ -44,10 +94,10 @@
 
     .hamburger.sticky {
         background-color: rgba(0, 0, 0, 0.584);
-        padding-top: 5px;
-        padding-bottom: 8px;
-        padding-left: 5px;
-        padding-right: 5px;
+        padding-top: 9px;
+        padding-bottom: 11px;
+        padding-left: 9px;
+        padding-right: 9px;
         border-radius: 4px;
         display: flex;
         flex-direction: column;
@@ -91,12 +141,7 @@
 }
 
 .navbar.sticky ul {
-
-
-    background: black;
     background: rgba(0, 0, 0, 0.8);
-
-
     border-radius: 8px;
     box-shadow: 0 10px 50px rgba(0, 0, 0, 0.626);
     padding: 1%;
@@ -128,12 +173,8 @@
     #home {
         background: linear-gradient(180deg, rgba(0, 0, 0, 0.585), #02070C),
             url(assets/image-myself2.png);
-        
         background-repeat: no-repeat;
         background-size: cover;
-
-
-
     }
 }
 
@@ -271,9 +312,7 @@
     transition: .4s;
 }
 
-.logos-technologies img:hover {
-    filter: grayscale(0%);
-}
+
 
 @media (max-width: 816px) {
     .logos-technologies img {
@@ -513,7 +552,7 @@
     max-width: 408px;
     height: 244px;
     border-radius: 22px;
-    background-image: linear-gradient(-125deg, #FF6969 0px, #646363 100%);
+    background-color: #838383b9;
 }
 
 @media (max-width: 470px) {

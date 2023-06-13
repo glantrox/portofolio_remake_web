@@ -15,7 +15,7 @@
 <header>
     <div class="navbar d-flex flex-row justify-content-between align-items-center p-5 position-fixed">
         <h2 class="title-bar fw-bold">glantrox<span>.</span></h2>
-        <ul class="navigations-navbar  list-unstyled">
+        <ul class="navigations-navbar  ">
             <a href="#home">
                 <li class="item-navbar">HOME</li>
             </a>
@@ -34,11 +34,9 @@
         </ul>
 
         <div class="hamburger">
-            
             <div class="bar"></div>
             <div class="bar"></div>
             <div class="bar"></div>
-              
          </div>
         
 
@@ -96,9 +94,15 @@
 
             <div class="logos-technologies d-flex flex-wrap mt-4 align-items-center justify-content-center">
 
-                <img src="assets/logo-laravel.png" alt="">
-                <img src="assets/logo-flutter.png" alt="">
-                <img src="assets/logo-jpackcompose.png" alt="">
+                <a target="_blank" href="https://laravel.com/" style="cursor: unset;">
+                    <img src="assets/logo-laravel.png" alt="">
+                </a>
+                <a target="_blank" href="https://flutter.dev/" style="cursor: unset;">
+                    <img src="assets/logo-flutter.png" alt="">
+                </a>
+                <a target="_blank" href="https://developer.android.com/jetpack/compose?gclid=CjwKCAjwp6CkBhB_EiwAlQVyxftLWzRlaiMpUEOLN9bSLEbUHqvi9WcPLDp-EQlsoHz7_XBRfOV-JxoCUO0QAvD_BwE&gclsrc=aw.ds" style="cursor: unset;">
+                    <img src="assets/logo-jpackcompose.png" alt="">
+                </a>
             </div>
         </div>
     </section>
@@ -301,7 +305,7 @@
     <footer id="footer">
         <div class="footer-wrapper">
             <div class="footer-body d-flex flex-wrap align-items-center text-white justify-content-center py-4 h-100">
-                <div class="footer-semi-items ms-5">
+                <div class="footer-semi-items d-flex flex-wrap position-relative ms-5">
                     <div class="footer-items">
                         <h3 class="title-footer fw-bold">glantrox<span>.</span> </h3>
                         <p class="subtitle-footer fw-light"> Tubianes in may hambel opinien gw tuh jaksel af orang nya
@@ -337,7 +341,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="footer-semi-items ms-5 mt-sm-4">
+                <div class="footer-semi-items ms-5 mt-sm-4 mt-md-0">
                     <div class="footer-items">
                         <h3 class="title-footer fw-bold">Our Services</h3>
                         <p class="subtitle-footer fw-light">Social Media Management <br>Front-End Development <br>UI/UX
@@ -352,13 +356,10 @@
 
 
             </div>
-        </div>
+            
+        </div>        
     </footer>
-    <copyright-toe id="copyrights">
-        <div class="footer-divider"></div>
-        <p class="footer-copyright d-flex justify-content-center align-items-center fw-light">© Copyright 2023 Glantrox.
-            All Rights Reserved</p>
-    </copyright-toe>
+    
 
 
     <!-- Bootstrap JS -->
