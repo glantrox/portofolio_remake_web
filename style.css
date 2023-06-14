@@ -195,6 +195,7 @@
     line-height: 97%;
     text-shadow: 0 100px 120px #FF6969;
     color: white;
+    cursor: default;
 }
 
 @media (max-width: 766px) {
@@ -207,6 +208,7 @@
     background: -webkit-linear-gradient(#FF6969, #924343);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    cursor: default;
 }
 
 .title-home::after {
