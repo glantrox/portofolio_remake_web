@@ -206,7 +206,7 @@
 
 .title-home span {
     background: -webkit-linear-gradient(#FF6969, #924343);
-    -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     cursor: default;
 }
@@ -348,7 +348,7 @@
 .title-aboutme span {
     cursor: default;
     background: -webkit-linear-gradient(#FF6969, #924343);
-    -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
@@ -373,7 +373,7 @@
 .about-yoepc-title h1 {
     cursor: default;
     background: -webkit-linear-gradient(#FF6969, #924343);
-    -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     font-family: 'Inter', sans-serif;
     font-size: 78px;
