@@ -493,6 +493,16 @@
 
 }
 
+@media (max-width: 433px) {
+    .header-services h1::after {
+        width: 72px;
+    }
+    .header-services h1::before {
+        width: 72px;
+    }
+
+}
+
 @media (max-width: 766px) {
     .card-services {
         margin-top: 32px;
@@ -563,6 +573,15 @@
     margin-bottom: 14px;
     margin-left: 8px;
     display: inline-block;
+}
+
+@media (max-width: 433px) {
+    .title-skills::after {
+        width: 72px;
+    }
+    .title-skills::before {
+        width: 72px;
+    }
 }
 
 .card-skills {
@@ -742,6 +761,12 @@
 .text-footer-projects:hover i {
     margin-left: 5px;
     color: #FF6969;
+}
+
+@media (max-width: 751px) {
+    .fsi-2 {
+        margin-top: 22px;
+    }
 }
 
 
