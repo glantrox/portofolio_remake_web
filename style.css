@@ -328,6 +328,7 @@
 .title-aboutme {
     font-family: 'Inter', sans-serif;
     font-size: 69px;
+    cursor: default;
     line-height: 92%;
 }
 
@@ -444,7 +445,7 @@
 .subtitle-services {
     font-family: 'Inter', sans-serif;
     cursor: default;
-    color: #E7E7E7;
+    color: #acacac;
     cursor: default;
 }
 
@@ -538,7 +539,7 @@
 .subtitle-skills {
     cursor: default;
     font-family: 'Inter', sans-serif;
-    color: #E7E7E7;
+    color: #acacac;
 }
 
 .title-skills::before {
@@ -584,11 +585,11 @@
     height: 52px;
     width: 52px;
     background-color: #cdcdcd86;
-    border-radius: 12px;
+    border-radius: 10px;
 
     background-repeat: no-repeat;
     background-position: center center;
-    /* optional, center the image */
+    
 
 }
 
@@ -636,7 +637,7 @@
     font-size: 16px;
     cursor: default;
     font-weight: 400;
-    color: #E7E7E7;
+    color: #e7e7e7cd;
 }
 
 
@@ -653,11 +654,13 @@
 
 .title-projects {
     line-height: 95%;
+    cursor: default;
 }
 
 .subtitle-projects {
     line-height: 95%;
-    color: #676767;
+    cursor: default;
+    color: #acacac;
 }
 
 .btn-cfm {
