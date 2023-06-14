@@ -222,6 +222,7 @@
 .subtitle-home {
     max-width: 508px;
     font-size: 22px;
+    cursor: default;
     color: #B4B4B4;
 }
 
@@ -300,6 +301,7 @@
     color: #7A7A7A;
     font-size: 18px;
     font-family: 'Inter', sans-serif;
+    cursor: default;
 }
 
 .logos-technologies img {
@@ -341,6 +343,7 @@
 }
 
 .title-aboutme span {
+    cursor: default;
     background: -webkit-linear-gradient(#FF6969, #924343);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -350,6 +353,7 @@
     font-family: 'Inter', sans-serif;
     font-size: 22px;
     max-width: 550px;
+    cursor: default;
     color: #9a9a9a;
 }
 
@@ -364,6 +368,7 @@
 }
 
 .about-yoepc-title h1 {
+    cursor: default;
     background: -webkit-linear-gradient(#FF6969, #924343);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -393,9 +398,11 @@
 .about-yoepc-title h5 {
     font-size: 32px;
     line-height: 97%;
+    cursor: default;
 }
 
 .about-yoepc-desc {
+    cursor: default;
     max-width: 290px;
     color: #E7E7E7;
     font-family: 'Inter', sans-serif;
@@ -430,11 +437,15 @@
 
 .title-services {
     font-family: 'Inter', sans-serif;
+    cursor: default;
+    cursor: default;
 }
 
 .subtitle-services {
     font-family: 'Inter', sans-serif;
+    cursor: default;
     color: #E7E7E7;
+    cursor: default;
 }
 
 .card-services {
@@ -453,6 +464,7 @@
     font-family: 'Inter', sans-serif;
     font-weight: bold;
     line-height: 95%;
+    cursor: default;
     font-size: 39px;
 }
 
@@ -496,7 +508,7 @@
     font-family: 'Inter', sans-serif;
     font-weight: lighter;
     line-height: 97%;
-
+    cursor: default;
     font-size: 18px;
 }
 
@@ -519,10 +531,12 @@
 
 
 .title-skills {
+    cursor: default;
     font-family: 'Inter', sans-serif;
 }
 
 .subtitle-skills {
+    cursor: default;
     font-family: 'Inter', sans-serif;
     color: #E7E7E7;
 }
@@ -613,13 +627,14 @@
 }
 
 .title-cs {
+    cursor: default;
     font-size: 25px;
     line-height: 97%;
 }
 
 .subtitle-cs {
     font-size: 16px;
-
+    cursor: default;
     font-weight: 400;
     color: #E7E7E7;
 }
