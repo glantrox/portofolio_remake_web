@@ -695,7 +695,6 @@
 }
 
 .card-projects {
-    
     width: 510px;
     height: 297px;
     background-color: #eaeaea;
@@ -719,13 +718,27 @@
 
 
 .card-projects:hover {
-    filter: blur(0.5rem);
-    overflow: hidden;
+    scale: 1.2;
+    filter: blur(10px);
+    
 }
 
 .texts-bp-overlay h1 {
     line-height: 78%;
+    cursor: default;
 }
+
+
+
+.text-footer-projects i {
+    transition: .3s;
+}
+
+.text-footer-projects:hover i {
+    margin-left: 5px;
+    color: #FF6969;
+}
+
 
 /* Footer */
 #footer {
