@@ -1,0 +1,55 @@
+{
+  "name": "portofolio_remake_web",
+  "version": "1.0.0",
+  "description": "my portofolio website",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "test",
+    "build": "babel src --out-dir dist",
+    "start": "mulai"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Izan2020/portofolio_remake_web.git"
+  },
+  "keywords": [
+    "portofolio"
+  ],
+  "author": "Glantrox",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Izan2020/portofolio_remake_web/issues"
+  },
+  "homepage": "https://github.com/Izan2020/portofolio_remake_web#readme",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.43.4",
+    "core-js": "^3.37.1",
+    "express": "^4.19.2",
+    "express-fileupload": "^1.5.0",
+    "formidable": "^3.5.1",
+    "imgur": "^2.4.2",
+    "imgur-uploader": "^4.2.1",
+    "multer": "^1.4.5-lts.1",
+    "node": "^22.3.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.24.7",
+    "@babel/preset-env": "^7.24.7",
+    "@webpack-cli/generators": "^3.0.7",
+    "assert": "^2.1.0",
+    "babel-loader": "^9.1.3",
+    "buffer": "^6.0.3",
+    "crypto-browserify": "^3.12.0",
+    "data": "^0.6.1",
+    "https-browserify": "^1.0.0",
+    "nodemon": "^3.1.3",
+    "os-browserify": "^0.3.0",
+    "process": "^0.11.10",
+    "react-app-rewired": "^2.2.1",
+    "stream-browserify": "^3.0.0",
+    "stream-http": "^3.2.0",
+    "url": "^0.11.3",
+    "webpack": "^5.91.0",
+    "webpack-cli": "^5.1.4"
+  }
+}

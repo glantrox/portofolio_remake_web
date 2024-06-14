@@ -10,5 +10,4 @@ window.addEventListener('scroll', function(){
 hamburger.addEventListener("click", () => {
     hamburger.classList.toggle("active");
     headerTwo.classList.toggle("active");
-    });
-
+});
