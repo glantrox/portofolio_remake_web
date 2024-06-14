@@ -90,7 +90,7 @@ function showPortofolios(portofolios) {
 
         const prtfWrapper = document.createElement(`prtf-wrapper`);
         prtfWrapper.innerHTML = `
-        <a href="" class="item-portofolio">
+        <a href="" data-bs-toggle="modalEdit" class="item-portofolio">
         <ul class="list-item">
         <li>${prtf.title}</li>
         <li>
