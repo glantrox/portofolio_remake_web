@@ -30,8 +30,23 @@ const client = new ImgurClient({
 
 // Body-Parser
 const bodyParser = require(`body-parser`);
+const { Console } = require('console');
 service.use(bodyParser.json());
 service.use(bodyParser.urlencoded({ extended: true }));
+
+// Get All Portofolios
+service.get(`/get-portofolios`, async (req, res) => {
+  try {    
+    const response = await supabase.from(`portofolios`).select(`*`);
+    if(response.error) {
+      res.status(500).send(`Internal Server Problem : ${error}`);
+    }
+    const dataResult = await response.data;    
+    res.send(dataResult);
+  } catch (error) {
+    res.status(500).send(`Client Exception - ${error}`);
+  }
+});
 
 // Upload Portofolio
 service.post('/upload-portofolio', upload.single(`file`), async (req, res) => {

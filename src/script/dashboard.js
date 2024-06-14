@@ -1,26 +1,37 @@
-// Middleware Typashi
-let isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
-if (isLoggedIn) {
-    const loginOverlay = document.querySelector(".login-check-bg");
-    loginOverlay.remove();
-} else {
-    // Login overlay
-    const buttonLogin = document.getElementById("btn-login");
-    buttonLogin.addEventListener("click", () => {
-        const inputPassword = document.getElementById("input-password");
+// OnStart
+document.addEventListener(`DOMContentLoaded`, async () => {
+    // Middleware Typashi
+    let isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+    if (isLoggedIn) {
         const loginOverlay = document.querySelector(".login-check-bg");
+        loginOverlay.remove();
+    } else {
+        // Login overlay
+        const buttonLogin = document.getElementById("btn-login");
+        buttonLogin.addEventListener("click", () => {
+            const inputPassword = document.getElementById("input-password");
+            const loginOverlay = document.querySelector(".login-check-bg");
 
-        if (inputPassword.value == "") return;
+            if (inputPassword.value == "") return;
 
-        if (inputPassword.value == "Izan2006*") {
-            localStorage.setItem("isLoggedIn", true);
-            loginOverlay.remove();
-        } else {
-            localStorage.setItem("isLoggedIn", false);
-            window.location.href = '/'
-        }
-    });
-}
+            if (inputPassword.value == "Izan2006*") {
+                localStorage.setItem("isLoggedIn", true);
+                loginOverlay.remove();
+            } else {
+                localStorage.setItem("isLoggedIn", false);
+                window.location.href = '/'
+            }
+        });
+    }
+
+    const response = await fetch(`/service/get-portofolios`);
+    if(!response.ok) {
+        const message = await response.text();
+        return alert(message);
+    }
+    const resultData = await response.json();
+    return showPortofolios(resultData);
+});
 
 // OnTap Upload
 const buttonUpload = document.getElementById(`button-upload-ptf`);
@@ -66,9 +77,36 @@ buttonUpload.addEventListener(`click`, async () => {
 });
 
 
-// Additional Functions 
+// Additional Functions ==================================================================================
 
-async function showError(message) {
+function showPortofolios(portofolios) {    
+    const listView = document.getElementById(`result-list`);
+
+    portofolios.forEach(prtf => {        
+        const specificDate = new Date(prtf.created_at);
+        const dateString = specificDate.toDateString(); // "Sat Jun 13 2024"
+        const domain = new URL(prtf.source_url).hostname;
+
+
+        const prtfWrapper = document.createElement(`prtf-wrapper`);
+        prtfWrapper.innerHTML = `
+        <a href="" class="item-portofolio">
+        <ul class="list-item">
+        <li>${prtf.title}</li>
+        <li>
+        <a href="${prtf.source_url}" target="_blank">
+        ${domain}
+        </a>
+        </li>
+        <li>${dateString}</li>
+        </ul>
+        </a>
+        `;
+        listView.appendChild(prtfWrapper);
+    });
+}
+
+ function showError(message) {
     const errorBoxMessage = document.getElementById(`alert-wrapper`);
     errorBoxMessage.innerHTML = `
          <div class="alert alert-danger alert-dismissible fade show" role="alert">

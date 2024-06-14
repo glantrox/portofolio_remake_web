@@ -705,6 +705,11 @@
     color: #acacac;
 }
 
+.wpr-projct {
+    text-decoration: none;
+    color: black;
+}
+
 .btn-cfm {
     font-size: 22px;
 
@@ -732,6 +737,7 @@
 .text-card-sat {   
     height: 22px;
     font-weight: 800;
+    color: black;
 }
 .text-card-sat:nth-child(2) {   
     height: 12px;

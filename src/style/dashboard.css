@@ -66,7 +66,13 @@ ul {
 }
 
 .sidebar-header {
-    align-self: center;        
+    align-self: center;    
+    
+}
+
+.side-bar a {
+    text-decoration: none;    
+    color: white;
 }
 
 .sidebar-header h1 {
@@ -167,12 +173,20 @@ ul {
     text-decoration: none;
     color: gray;
     transition: .3s;
+    
 }
 
-.item-portofolio:hover .list-item {
-    background-color: #02070C;
+.list-item:hover {
+    background-color: #ff696983;
     color: white;
     padding: 6px;
+    cursor: pointer;
+}
+.list-item:hover a {
+    color: white;
+}
+.list-item a {
+    text-decoration: none;
 }
 
 /* == MODAL == */
