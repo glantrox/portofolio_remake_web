@@ -3,9 +3,9 @@ const service = express.Router();
 
 // Static Strings
 const supabaseURL = `https://ijtsrdxvxgoewztdnwqo.supabase.co`;
-const supabaseKey = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlqdHNyZHh2eGdvZXd6dGRud3FvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTc4NTU5MDAsImV4cCI6MjAzMzQzMTkwMH0.Aeh-1_DQ05iMI068xzGt51gLo_-zbJ5-k2ChKEJc1nI`;
+const supabaseKey = `API_KEY`;
 const imgurURL = `https://api.imgur.com/3/image`;
-const imgurClientId = `2920335c9d2b497`;
+const imgurClientId = `API_KEY`;
 
 // Multer
 const multer = require('multer');
