@@ -1,6 +1,6 @@
 ![Website Mockup](https://github.com/Izan2020/portofolio_remake_web/assets/59131023/b636ef9e-1e26-466a-908f-549c70a0c8d0)
 
-[![Technologies](https://skillicons.dev/icons?i=express,nodejs,html,css,bootstrap)](https://skillicons.dev)
+[![Technologies](https://skillicons.dev/icons?i=supabase,express,nodejs,html,css,bootstrap)](https://skillicons.dev)
 
 # Portoflio Website
 
