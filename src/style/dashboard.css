@@ -166,7 +166,7 @@ ul {
     justify-content: space-between;
     font-weight: 300;
     transition: .3s;
-    border-radius: 12px;
+    border-radius: 8px;
 }
 
 .item-portofolio  {
@@ -177,7 +177,10 @@ ul {
 }
 
 .list-item:hover {
-    background-color: #ff696983;
+    background-color: #ff5e5eb4;
+    box-shadow: 10px 10px 106px -17px rgba(255,101,101,1);
+    -webkit-box-shadow: 10px 10px 106px -17px rgba(255,101,101,1);
+    -moz-box-shadow: 10px 10px 106px -17px rgba(255,101,101,1);
     color: white;
     padding: 6px;
     cursor: pointer;

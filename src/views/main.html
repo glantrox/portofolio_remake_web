@@ -16,6 +16,9 @@
     <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="../../assets/favicon-16x16.png">
     <link rel="manifest" href="./site.webmanifest">
+    <!-- AOS -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
 
     <title>Glantrox</title>
 </head>
@@ -54,11 +57,11 @@
 
 <body id="body">
     <!-- Home Section -->
-
+    
     <section id="home" class="position-relative">
         <div class="home-body d-flex flex-wrap justify-content-center align-items-center h-100">
-            <div class="home-body-left col-6 ">
-                <div class="title-home-wrapper">
+            <div class="home-body-left col-6 ">                  
+                <div class="title-home-wrapper" data-aos="fade-down" data-aos-duration="4000" data-aos-delay="600">
                     <h1 class="title-home">
                         <span>Website &<br>
                             Mobile<br>
@@ -81,20 +84,19 @@
                 </div>
             </div>
             <div class="home-body-right d-sm-none d-none d-lg-inline">
-                <div class="container mt-sm-4 mt-md-4 ">
+                <div class="container mt-sm-4 mt-md-4 "data-aos="flip-right" data-aos-duration="8000" data-aos-delay="1000" >
                     <img class="" src="assets/image-myself.png" alt="" height="820">
                 </div>
             </div>
         </div>
-
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+            <path fill="#ffffff" fill-opacity="1"
+                d="M0,32L80,64C160,96,320,160,480,181.3C640,203,800,181,960,165.3C1120,149,1280,139,1360,133.3L1440,128L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z">
+            </path>
+        </svg>
     </section>
 
     <!-- Technologies Section -->
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-        <path fill="#ffffff" fill-opacity="1"
-            d="M0,32L80,64C160,96,320,160,480,181.3C640,203,800,181,960,165.3C1120,149,1280,139,1360,133.3L1440,128L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z">
-        </path>
-    </svg>
     <section id="technologies" style="border-top: 4px solid white;">
         <div class="body-technologies d-flex flex-column justify-content-center align-items-center py-5">
             <p class="title-technologies fw-light">Technologies I use frequently.</p>
@@ -103,15 +105,16 @@
             <div class="logos-technologies d-flex flex-wrap mt-4 align-items-center justify-content-center">
 
                 <a target="_blank" href="https://laravel.com/" style="cursor: unset;">
-                    <img src="/../../assets/logo-laravel.png" alt="">
+                    <img src="/../../assets/logo-laravel.png" alt="" data-aos="zoom-in-down" data-aos-duration="4000" data-aos-delay="200">
                 </a>
+
                 <a target="_blank" href="https://flutter.dev/" style="cursor: unset;">
-                    <img src="/../../assets/logo-flutter.png" alt="">
+                    <img src="/../../assets/logo-flutter.png" alt="" data-aos="zoom-in-down" data-aos-duration="4000" data-aos-delay="400">
                 </a>
                 <a target="_blank"
                     href="https://developer.android.com/jetpack/compose?gclid=CjwKCAjwp6CkBhB_EiwAlQVyxftLWzRlaiMpUEOLN9bSLEbUHqvi9WcPLDp-EQlsoHz7_XBRfOV-JxoCUO0QAvD_BwE&gclsrc=aw.ds"
                     style="cursor: unset;">
-                    <img src="/../../assets/logo-jpackcompose.png" alt="">
+                    <img src="/../../assets/logo-jpackcompose.png" alt="" data-aos="zoom-in-down" data-aos-duration="4000" data-aos-delay="600">
                 </a>
             </div>
         </div>
@@ -125,10 +128,10 @@
     <section id="about-me">
         <div class="about-me-wrapper px-5 p-5">
             <div class="about-me-body d-flex flex-wrap justify-content-center align-items-center text-white ">
-                <div class="about-me-left  col-md-6 col-lg-6 ">
+                <div class="about-me-left  col-md-6 col-lg-6"data-aos="fade-right" data-aos-duration="4000" data-aos-delay="30">
                     <h1 class="title-aboutme fw-bold">Hello! i’m <br>
                         <span>Hamas Azizan</span></h1>
-                    <p class="subtitle-aboutme fw-light">I live in East Jakarta, a passionate vocational high school
+                    <p class="subtitle-aboutme fw-light">I'm based in Jakarta, a passionate vocational high school
                         student. With one year
                         of software
                         development experience, I'm excited to pursue my passion and enhance my skills in the
@@ -139,7 +142,7 @@
                 </div>
                 <div class="about-me-right">
                     <div class="about-yoepc-wrapper">
-                        <div class="about-yoepc">
+                        <div class="about-yoepc" data-aos="fade-left" data-aos-duration="4000" data-aos-delay="600">
                             <div class="about-yoepc-title d-flex align-items-center">
                                 <h1 class="fw-bold">ONE</h1>
                                 <h5 class="fw-light ms-2">year of<br>experience</h5>
@@ -148,7 +151,7 @@
                                 I started coding when i was 16 years old, my first programing language is Kotlin.
                             </p>
                         </div>
-                        <div class="about-yoepc">
+                        <div class="about-yoepc" data-aos="fade-left" data-aos-duration="4000" data-aos-delay="800">
                             <div class="about-yoepc-title d-flex align-items-center">
                                 <h1 class="fw-bold">6 </h1>
                                 <h5 class="fw-light ms-2">projects<br>contributed</h5>
@@ -170,16 +173,16 @@
             <p class="subtitle-services fw-light">what i do for you?</p>
         </div>
         <div class="body-services d-flex flex-wrap justify-content-center align-items-center mt-4">
-            <div class="card-services d-flex align-items-end">
 
-                <div class="texts-card-services text-white ">
+            <div class="card-services d-flex align-items-end" data-aos="flip-right" data-aos-delay="500">
+                <div class="texts-card-services text-white">
                     <i class="fa-solid fa-hashtag icon-card-services fa-4x"></i>
-                    <h1 class="card-services-title">Social Media<br>Management</h1>
-                    <p class="card-services-subtitle">INSTAGRAM ETC.</p>
+                    <h1 class="card-services-title">Back-End<br>Development</h1>
+                    <p class="card-services-subtitle">REST API ENVIRONMENT</p>
                 </div>
             </div>
 
-            <div class="card-services d-flex align-items-end">
+            <div class="card-services d-flex align-items-end"  data-aos="flip-right" data-aos-delay="1000" >
                 <div class="texts-card-services text-white ">
                     <i class="fa-solid fa-code icon-card-services fa-3x"></i>
                     <h1 class="card-services-title">Front-End<br>Development</h1>
@@ -187,7 +190,7 @@
                 </div>
             </div>
 
-            <div class="card-services d-flex align-items-end">
+            <div class="card-services d-flex align-items-end" data-aos="flip-right" data-aos-delay="1500">
                 <div class="texts-card-services text-white ">
                     <i class="fa-solid fa-palette icon-card-services fa-3x"></i>
                     <h1 class="card-services-title">UI/UX<br>Design</h1>
@@ -202,7 +205,7 @@
             <h1 class="title-skills fw-bold">Passive Skills</h1>
             <p class="subtitle-skills fw-light">what i can do?</p>
         </div>
-        <div class="body-skills d-flex flex-wrap justify-content-center align-items-center gap-4 text-white mt-4">
+        <div class="body-skills d-flex flex-wrap justify-content-center align-items-center gap-4 text-white mt-4" data-aos="zoom-in-up" >
             <div class="card-skills cs-1">
                 <div class="content-cs">
                     <div class="wrapper-icon-cs wicon-cs-1"></div>
@@ -297,7 +300,7 @@
                 <p class="subtitle-projects fw-light">what i have created?</p>
             </div>
         </div>
-        <div id="lv-projects" class="body-projects d-flex flex-wrap justify-content-start align-items-center gap-3 ">
+        <div id="lv-projects" class="body-projects d-flex flex-wrap justify-content-center align-items-center gap-3 ">
          
           
         </div>
@@ -376,7 +379,11 @@
     </script>
     <!-- Local JS -->
     <script src="../script/main.js"></script>
-
+    <!-- AOS -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
 
 </body>
 

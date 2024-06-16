@@ -5,7 +5,7 @@
 
 #body {
     
-    background-color: #02070C;
+    background-color: #02070C;        
     font-family: 'Inter', sans-serif;
     scroll-behavior: smooth;
 }
@@ -175,7 +175,18 @@
 
 #home {
     min-height: 782px;
+    background-image: radial-gradient(#ffffff57 2px, transparent 2px);
+    background-size: 150px 150px; 
+    background-attachment: fixed;  
+    background-position: center;  
+    transition: .6s;
+}
 
+#home.sticky {
+    background-image: radial-gradient(#ffffff57 2px, transparent 2px);
+    background-size: 65px 65px; 
+    border-radius: 50%; /* Make it circular */
+        
 }
 
 @media (max-width: 991px) {

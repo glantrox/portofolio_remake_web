@@ -68,8 +68,8 @@ buttonUpload.addEventListener(`click`, async () => {
             const errorMessage = await response.text();
             return showError(errorMessage);            
         }
-        setLoading(false);
-        return alert('Succeed');
+        await location.reload(true);
+        setLoading(false);                
     }).catch(error => {
         setLoading(false);
         showError(error.message);
@@ -90,13 +90,11 @@ function showPortofolios(portofolios) {
 
         const prtfWrapper = document.createElement(`prtf-wrapper`);
         prtfWrapper.innerHTML = `
-        <a href="" data-bs-toggle="modalEdit" class="item-portofolio">
+        <a href="${prtf.source_url}" data-bs-toggle="modalEdit" class="item-portofolio">
         <ul class="list-item">
         <li>${prtf.title}</li>
-        <li>
-        <a href="${prtf.source_url}" target="_blank">
-        ${domain}
-        </a>
+        <li>        
+        ${domain}        
         </li>
         <li>${dateString}</li>
         </ul>

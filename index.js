@@ -4,7 +4,12 @@ const app = express();
 
 // PORT Handling
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
+app.listen(PORT, () => {
+    console.log(`========================================\n`);
+    console.log(`Server is running on port ${PORT}\n`);
+    console.log(`Heres the link http://localhost:${PORT}\n`);
+    console.log(`========================================\n`);
+});
 
 // Static Path for Assets
 app.use('/assets', express.static(__dirname + `/assets`));
