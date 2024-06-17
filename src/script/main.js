@@ -25,8 +25,9 @@ document.addEventListener(`DOMContentLoaded`, async () => {
     showPortofolios(resultData);
 });
 
-const container = document.getElementById(`home`)
-container.addEventListener('mousemove', (e) => {
+const container = document.getElementById(`parallax-things`)
+const home = document.getElementById(`home`)
+home.addEventListener('mousemove', (e) => {
     const mouseX = e.pageX;
     const mouseY = e.pageY;
 
@@ -34,7 +35,8 @@ container.addEventListener('mousemove', (e) => {
     const offsetX = mouseX / container.offsetWidth - 0.5;
     const offsetY = mouseY / container.offsetHeight - 0.5;
     
-    background.style.transform = `translate(-${offsetX * 50}px, -${offsetY * 50}px)`; // Adjust multiplier as needed
+    container.style.transform = `translate(-${offsetX * 20}px, -${offsetY * 20}px)`; 
+    container.style.transition = `.1s`;    
 });
 
 // Additional Functions ============================================================
