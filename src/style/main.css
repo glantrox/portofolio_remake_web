@@ -4,7 +4,6 @@
 
 
 #body {
-    
     background-color: #02070C;        
     font-family: 'Inter', sans-serif;
     scroll-behavior: smooth;
@@ -179,14 +178,78 @@
     background-size: 150px 150px; 
     background-attachment: fixed;  
     background-position: center;  
-    transition: .6s;
+    transition: 2s;
+    box-shadow: inset 0 -4px 0 0 white;
 }
+
+.image-wrapper {
+    position: relative; /* Ensure the wrapper is positioned relative */
+}
+
+.image-wrapper img {
+    display: block; /* Ensures no extra space below the image */
+    width: 100%; /* Adjust the width as needed */
+    height: auto; /* Maintain aspect ratio */
+}
+
+.overlay-spotify {
+    position: absolute;
+    top: 20%;
+    left: 32%; /* Adjust as needed */
+    width: 80%; /* Span the entire width of the image */
+    padding: 12px;
+    color: white; /* Text color */
+    background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent background */
+    border-radius: 12px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    
+}
+
+.album-card {
+    height: 50px;
+    width: 50px;    
+    background-position: center;
+    background-size: contain;
+    border-radius: 8px;
+}
+
+
+
+.wrapper-album-spotify {        
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 12px;
+}
+
+.wrapper-album-spotify img {
+    height: 50px;
+    width: 50px;
+}
+
+.wrapper-text-spotify {
+    margin-left: 12px;
+    padding-top: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.text-spotify {
+    line-height: 0.7;    
+}
+
+.text-spotify:nth-child(2) {
+    font-weight: 300;
+}
+
 
 #home.sticky {
     background-image: radial-gradient(#ffffff57 2px, transparent 2px);
-    background-size: 65px 65px; 
-    border-radius: 50%; /* Make it circular */
-        
+    background-size: 65px 65px;     
 }
 
 @media (max-width: 991px) {
@@ -317,6 +380,7 @@
 #technologies {
     min-height: 190px;
     background-color: white;
+    box-shadow: inset 0 -10px 0 0 white;
 }
 
 .title-technologies {
@@ -691,6 +755,11 @@
     cursor: default;
     font-weight: 400;
     color: #e7e7e7cd;
+}
+
+.subtitle-cs span {
+    font-weight: 400;
+    color: white;
 }
 
 

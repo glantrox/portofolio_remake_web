@@ -65,7 +65,7 @@ buttonUpload.addEventListener(`click`, async () => {
     }).then(async response => {
         if (!response.ok) {
             setLoading(false);
-            const errorMessage = await response.text();
+            const errorMessage = await response.json();
             return showError(errorMessage);
         }
         await location.reload(true);

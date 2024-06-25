@@ -4,10 +4,13 @@
   "version": "1.0.0",
   "description": "my portofolio website",
   "main": "./index.js",
+  "engines": {
+    "node": "20.x"
+  },
   "scripts": {
     "test": "test",
     "build": "babel src --out-dir dist",
-    "start": "nodemon index.js"    
+    "start": "node index.js"    
   },
   "repository": {
     "type": "git",
