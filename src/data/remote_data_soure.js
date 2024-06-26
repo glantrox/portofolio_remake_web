@@ -34,12 +34,93 @@ const { Console } = require('console');
 service.use(bodyParser.json());
 service.use(bodyParser.urlencoded({ extended: true }));
 
+// Update Portofolio
+service.post(`/update-portofolio`, upload.single(`file`) , async (req, res) => {
+  try {
+    const {
+      id,
+      title,
+      description,  
+      source_url    
+    } = req.body;
+    let imageUrl = ``;
+
+    console.log(`ID : ${id}\nTitle : ${title}`);
+
+    const file = req.file;
+
+    // Validate File
+    if (file) {
+
+      // Format to formData
+      const formData = new FormData();
+
+      // Format to Blob object
+      const fileBlob = new Blob([fs.readFileSync(file.path)]);
+      formData.append('image', fileBlob, {
+        filename: file.originalname
+      });
+
+      const imgurResponse = await fetch(`${imgurURL}`, {
+        method: `POST`,
+        headers: {
+          "Authorization": `Client-ID ${imgurClientId}`,
+        },
+        body: formData
+      });
+      if (!imgurResponse.ok) {
+        // Returns Error Message
+        return res.status(imgurResponse.status).send(`Imgur Upload Error : ${imgurResponse.statusText}`);
+      }
+      // Retrive Imgur Link
+      const imgur = await imgurResponse.json();
+      imageUrl = imgur.data.link
+    }
+
+    let bodyForm = {
+      title: title,
+      description: description,
+      source_url: source_url}
+
+      if(imageUrl !== ``) {
+        bodyForm.image_url = imageUrl
+      }
+
+    const response = await supabase.from(`portofolios`).update(bodyForm).eq(`id`, id);
+
+    if(response.error) {
+      res.status(response.status).send(`Internal Server Problem : ${response.statusText}`);
+    }
+    res.status(200).send(`Data Successfully Updated`);
+  } catch (error) {
+    res.status(500).send(`Client Exception - ${error}`);
+  }
+});
+
+// Get Portofolio Data by ID
+service.get(`/get-portofolio`, async (req, res) => {
+  try {
+    const id = req.query.id;
+
+    console.log(`ID Equals : `, id)
+
+    const response = await supabase.from(`portofolios`).select(`*`).eq(`id`, parseInt(id));
+    if(response.error) {
+      res.status(response.status).send(`Internal Server Problem : ${response.statusText}`);
+    }
+    const dataResult = await response.data;    
+    res.send(dataResult);
+  } catch (error) {
+    res.status(500).send(`Client Exception - ${error}`);
+  }
+});
+
 // Get All Portofolios
 service.get(`/get-portofolios`, async (req, res) => {
   try {    
     const response = await supabase.from(`portofolios`).select(`*`);
     if(response.error) {
-      res.status(500).send(`Internal Server Problem : ${response.status}`);
+      res.status(response.status).send(`Internal Server Problem : ${response.message}`);      
     }
     const dataResult = await response.data;    
     res.send(dataResult);
@@ -59,11 +140,15 @@ service.post('/upload-portofolio', upload.single(`file`), async (req, res) => {
 
     const file = req.file;
 
+    // Validate File
     if (!file) {
       return res.status(500).send(`File is Empty`);
     }            
 
+    // Format to formData
     const formData = new FormData();
+
+    // Format to Blob object
     const fileBlob = new Blob([fs.readFileSync(file.path)]);
     formData.append('image', fileBlob, {filename: file.originalname});
 
@@ -75,8 +160,10 @@ service.post('/upload-portofolio', upload.single(`file`), async (req, res) => {
         body: formData
     });
     if(!imgurResponse.ok) {
+      // Returns Error Message
       return res.status(imgurResponse.status).send(`Imgur Upload Error : ${imgurResponse.statusText}`);
     }
+    // Retrive Imgur Link
     const imgur = await imgurResponse.json();
 
     const {

@@ -19,7 +19,7 @@ document.addEventListener(`DOMContentLoaded`, async () => {
     const response = await fetch('/service/get-portofolios');
     if(!response.ok) {
         const data = response.text();
-        return alert (`Check your Connection : ${data}`);
+        return alert (`Check your Connection`);
     }
     const resultData = await response.json();
     showPortofolios(resultData);
