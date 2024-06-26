@@ -44,8 +44,7 @@ service.post(`/update-portofolio`, upload.single(`file`) , async (req, res) => {
       source_url    
     } = req.body;
     let imageUrl = ``;
-
-    console.log(`ID : ${id}\nTitle : ${title}`);
+    
 
     const file = req.file;
 
