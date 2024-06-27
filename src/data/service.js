@@ -1,6 +1,5 @@
 const express = require(`express`);
 const service = express.Router();
-require('dotenv').config();
 
 // Environments
 const supabaseURL = process.env.SUPABASE_URL;
@@ -11,26 +10,29 @@ const imgurClientId = process.env.IMGUR_CLIENT_ID;
 // Multer
 const upload = require('../../api/uploads');
 
-// FS
-const fs = require('fs');
-
 // Supabase Client
 const { createClient } = require('@supabase/supabase-js');
 const supabase = createClient(supabaseURL, supabaseKey);
 
-// Imgur Client
-const { ImgurClient } = require('imgur');
-const imgurUploader = require('imgur-uploader');
-const client = new ImgurClient({
-  clientId: imgurClientId,
-  clientSecret: imgurClientId
-});
-
 // Body-Parser
 const bodyParser = require(`body-parser`);
-const { Console } = require('console');
 service.use(bodyParser.json());
 service.use(bodyParser.urlencoded({ extended: true }));
+
+// Delete Portofolio
+service.get(`/delete-portofolio`, async(req, res) => {
+  try {
+    const id = req.query.id;    
+
+    const response = await supabase.from(`portofolios`).delete().eq(`id`, parseInt(id));
+    if(!response.ok) {
+      return res.status(response.status).send(`Internal Server Problem : ${response.statusText}`);      
+    }
+    res.status(200).send(`Data Successfully Deleted`);
+  } catch (error) {
+    res.status(500).send(`Client Exception - ${error}`);
+  }
+});
 
 // Update Portofolio
 service.post(`/update-portofolio`, upload.single(`file`) , async (req, res) => {
@@ -77,7 +79,8 @@ service.post(`/update-portofolio`, upload.single(`file`) , async (req, res) => {
     let bodyForm = {
       title: title,
       description: description,
-      source_url: source_url}
+      source_url: source_url
+    }
 
       if(imageUrl !== ``) {
         bodyForm.image_url = imageUrl

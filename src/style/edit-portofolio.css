@@ -50,7 +50,7 @@ body {
     padding: 10px;
   }
   
-  button {
+  button {    
     background-color: #FF6969;
     color: white;
     border: none;
@@ -62,7 +62,15 @@ body {
     border-radius: 8px;
     cursor: pointer;
     width: 100%;
+    border-radius: 12px;
     transition: background-color 0.3s ease;
+  }
+
+  button:nth-child(2) {
+    margin-top: 12px;
+    background-color: rgb(196, 196, 196);
+    color: white;
+    
   }
   
   button:hover {

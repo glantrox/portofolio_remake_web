@@ -8,6 +8,8 @@ route.get(`/`, (req, res) => res.sendFile(`${basePath}/main.html`));
 
 // Dashboard Route
 route.get(`/dashboard`, (req, res) => res.sendFile(`${basePath}/dashboard.html`));
+
+// Edit Route
 route.get(`/edit-portofolio`, (req, res) => res.sendFile(`${basePath}/edit-portofolio.html`));
 
 // Inbox Route

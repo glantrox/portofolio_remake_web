@@ -48,7 +48,7 @@ buttonUpload.addEventListener(`click`, async () => {
     formData.append('source_url', inputUrl.value);
 
     const fileSizeInBytes = inputImage.files[0].size;
-    const maxSizeInBytes = 20 * 1024 * 1024; 
+    const maxSizeInBytes = 20 * 1024 * 1024;         
 
     if (fileSizeInBytes > maxSizeInBytes) {
         return showError('Max file size is 20 Megabytes!');

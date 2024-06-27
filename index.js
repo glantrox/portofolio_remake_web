@@ -1,9 +1,10 @@
 // nodemon app.js
 const express = require(`express`);
 const app = express();
+require('dotenv').config();
 
 // PORT Handling
-const PORT = process.env.PORT || 6969;
+const PORT = process.env.LOCAL_PORT;
 app.listen(PORT, () => {
     console.log(`========================================\n`);
     console.log(`Server is running on port ${PORT}\n`);
@@ -18,10 +19,8 @@ app.use('/style', express.static(__dirname + `/src/style`));
 app.use(`/uploads`, express.static(__dirname + `/uploads`));
 app.use(`/api`, express.static(__dirname + `/api`));
 
-
-
 // Service
-const service = require(`./src/data/remote_data_soure`);
+const service = require(`./src/data/service`);
 app.use(`/service`, service);
 
 // Routes
