@@ -88,9 +88,8 @@ function setValues(data) {
     const inputTitle = document.getElementById(`title`);
     const inputDescription = document.getElementById(`description`);
     const inputSourceUrl = document.getElementById(`sourceUrl`);
-
+        
     inputTitle.value = data.title;
     inputDescription.value = data.description;
     inputSourceUrl.value = data.source_url;
-
 }
