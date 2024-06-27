@@ -1,5 +1,5 @@
 const multer = require('multer'); 
-const upload = multer({ dest: './uploads/' });
+const upload = multer({ dest: 'uploads/' });
 
 upload.single('file'), (req, res) => {
     if (req.file) {
