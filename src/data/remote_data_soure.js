@@ -1,11 +1,12 @@
 const express = require(`express`);
 const service = express.Router();
+require('dotenv').config();
 
-// Static Strings
-const supabaseURL = `https://ijtsrdxvxgoewztdnwqo.supabase.co`;
-const supabaseKey = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlqdHNyZHh2eGdvZXd6dGRud3FvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTc4NTU5MDAsImV4cCI6MjAzMzQzMTkwMH0.Aeh-1_DQ05iMI068xzGt51gLo_-zbJ5-k2ChKEJc1nI`;
-const imgurURL = `https://api.imgur.com/3/image`;
-const imgurClientId = `2920335c9d2b497	`;
+// Environments
+const supabaseURL = process.env.SUPABASE_URL;
+const supabaseKey = process.env.SUPABASE_KEY;
+const imgurURL = process.env.IMGUR_URL;
+const imgurClientId = process.env.IMGUR_CLIENT_ID;
 
 // Multer
 const upload = require('../../api/uploads');
