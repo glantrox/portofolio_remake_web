@@ -16,6 +16,7 @@ app.use('/assets', express.static(__dirname + `/assets`));
 app.use('/script', express.static(__dirname + `/src/script`));
 app.use('/style', express.static(__dirname + `/src/style`));
 app.use(`/uploads`, express.static(__dirname + `/uploads`));
+app.use(`/api`, express.static(__dirname + `/api`));
 
 
 
