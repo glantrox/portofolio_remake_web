@@ -10,7 +10,7 @@ const imgurClientId = `2920335c9d2b497	`;
 // Multer
 const multer = require('multer');
 const upload = multer({
-  dest: './uploads/'
+  dest: './api/uploads'
 });
 
 // FS
