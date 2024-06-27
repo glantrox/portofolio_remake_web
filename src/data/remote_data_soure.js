@@ -52,7 +52,7 @@ service.post(`/update-portofolio`, upload.single(`file`) , async (req, res) => {
       const formData = new FormData();
 
       // Format to Blob object
-      const fileBlob = new Blob([fs.readFileSync(file.path)]);
+      const fileBlob = new Blob([file.buffer], { type: file.mimetype });
       formData.append('image', fileBlob, {
         filename: file.originalname
       });
@@ -96,9 +96,7 @@ service.post(`/update-portofolio`, upload.single(`file`) , async (req, res) => {
 // Get Portofolio Data by ID
 service.get(`/get-portofolio`, async (req, res) => {
   try {
-    const id = req.query.id;
-
-    console.log(`ID Equals : `, id)
+    const id = req.query.id;    
 
     const response = await supabase.from(`portofolios`).select(`*`).eq(`id`, parseInt(id));
     if(response.error) {
@@ -145,7 +143,7 @@ service.post('/upload-portofolio', upload.single(`file`), async (req, res) => {
     const formData = new FormData();
 
     // Format to Blob object
-    const fileBlob = new Blob([fs.readFileSync(file.path)]);
+    const fileBlob = new Blob([file.buffer], { type: file.mimetype });
     formData.append('image', fileBlob, {filename: file.originalname});
 
     const imgurResponse = await fetch(`${imgurURL}`, {
