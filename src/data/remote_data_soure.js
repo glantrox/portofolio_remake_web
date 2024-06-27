@@ -8,10 +8,7 @@ const imgurURL = `https://api.imgur.com/3/image`;
 const imgurClientId = `2920335c9d2b497	`;
 
 // Multer
-const multer = require('multer');
-const upload = multer({
-  dest: './uploads/'
-});
+const upload = require('../../api/uploads');
 
 // FS
 const fs = require('fs');
