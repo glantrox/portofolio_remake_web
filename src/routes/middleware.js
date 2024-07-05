@@ -1,9 +1,8 @@
-const { LocalStorage } = require('node-localstorage');
-const localStorage = new LocalStorage('./scratch');
+const localStorage = require(`store`);
 
 module.exports = {
     authMiddleware: async (req,res, next) => {                
-        const isLoggedIn = localStorage.getItem(`isLoggedIn`)        
+        const isLoggedIn = localStorage.get(`auth`)
         // Re-Authenticate to Login Screen
         if(!isLoggedIn) {
             return res.redirect(`/login`);

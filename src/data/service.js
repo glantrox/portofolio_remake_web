@@ -18,8 +18,7 @@ const supabase = createClient(supabaseURL, supabaseKey);
 const imgurUpload = require('../utils/imgur');
 
 // Local Storage
-const { LocalStorage } = require('node-localstorage');
-const localStorage = new LocalStorage('./scratch');
+const localStorage = require(`store`)
 
 // Body-Parser
 const bodyParser = require(`body-parser`);
@@ -37,7 +36,7 @@ service.get(`/auth-user`, async (req, res) => {
     if(clientPassword !== password) {
       return res.status(401).send(`Wrong Password`);      
     }    
-    localStorage.setItem('isLoggedIn', true);    
+    localStorage.set(`auth`, true);
     res.status(200).send(`Login Succeed`);
   } catch (error) {
     res.status(500).send(`Client Exception - ${error}`);
