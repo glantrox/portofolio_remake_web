@@ -1,5 +1,7 @@
+# Production
 node_modules
 api
 .vercel
 
+# Secret
 .env
