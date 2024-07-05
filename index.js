@@ -19,6 +19,15 @@ app.use('/style', express.static(__dirname + `/src/style`));
 app.use(`/uploads`, express.static(__dirname + `/uploads`));
 app.use(`/api`, express.static(__dirname + `/api`));
 
+// Express Session
+const session = require('express-session');
+app.use(session({
+    secret: process.env.CLIENT_SESSION_KEY,
+    resave: false,
+    saveUninitialized: false,
+    cookie: { secure: true } 
+}));
+
 // Service
 const service = require(`./src/data/service`);
 app.use(`/service`, service);

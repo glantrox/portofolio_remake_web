@@ -17,12 +17,32 @@ const supabase = createClient(supabaseURL, supabaseKey);
 // Imgur Client
 const imgurUpload = require('../utils/imgur');
 
+// Local Storage
+const { LocalStorage } = require('node-localstorage');
+const localStorage = new LocalStorage('./scratch');
+
 // Body-Parser
 const bodyParser = require(`body-parser`);
 service.use(bodyParser.json());
 service.use(bodyParser.urlencoded({
   extended: true
 }));
+
+service.get(`/auth-user`, async (req, res) => {
+  try {
+    
+    const password = req.query.password;
+
+    const clientPassword = process.env.CLIENT_PASSWORD    
+    if(clientPassword !== password) {
+      return res.status(401).send(`Wrong Password`);      
+    }    
+    localStorage.setItem('isLoggedIn', true);    
+    res.status(200).send(`Login Succeed`);
+  } catch (error) {
+    res.status(500).send(`Client Exception - ${error}`);
+  }
+});
 
 // Delete Portofolio
 service.get(`/delete-portofolio`, async (req, res) => {
