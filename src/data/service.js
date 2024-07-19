@@ -50,6 +50,7 @@ service.get(`/auth-user`, async (req, res) => {
     localStorage.set(`auth`, {
       isLoggedIn : true
     });
+    console.log("Login Succeed");
     res.status(200).send(`Login Succeed`);
   } catch (error) {
     res.status(500).send(`Client Exception - ${error}`);

@@ -2,10 +2,10 @@ const localStorage = require(`store`);
 
 module.exports = {
     authMiddleware: async (req,res, next) => {                
-        const isLoggedIn = localStorage.get(`auth`).isLoggedIn;
-        console.log(`Middleware LoggedIn : `, isLoggedIn);
+        const loginStatus = localStorage.get(`auth`).isLoggedIn;
+        console.log(`Middleware LoggedIn : `, loginStatus);
         // Re-Authenticate to Login Screen
-        if(!isLoggedIn) {
+        if(!loginStatus) {                  
             return res.redirect(`/login`);
         }
         next();
