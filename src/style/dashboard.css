@@ -15,44 +15,6 @@ ul {
     list-style-type: none;
 }
 
-/* == LOGIN CHECK == */
-
-.login-check-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.9); 
-    z-index: 999;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.card-login {
-    
-    background-color: white;
-    padding: 24px;
-    width: 340px;
-    border-radius: 12px;
-    display: flex;
-    flex-direction: column;
-}
-
-.card-login-header h3 {
-    font-weight: 700;
-}
-
-.card-login-body {
-    display: flex;
-    flex-direction: column;
-}
-
-
-
-
 /* == SIDE-BAR == */
 
 .side-bar {    
@@ -149,6 +111,19 @@ ul {
 
 .header-icon-right:hover {
     color: darkseagreen;
+}
+
+
+.header-icon-right-2 {
+    font-size: 22px;
+    margin-right: 18px;
+    text-decoration: none;
+    color: rgb(144, 7, 4);
+    transition: 0.3s;
+}
+
+.header-icon-right-2:hover {
+    color: rgb(247, 110, 105);
 }
 
 .content-body {

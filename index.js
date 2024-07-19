@@ -24,7 +24,7 @@ const localStorage = require(`store`);
 const storage = localStorage.get(`auth`)
 if(storage === null || storage === undefined) {
     localStorage.set(`auth`, {
-        isLoggedIn : null
+        isLoggedIn : false
       });
 }
 

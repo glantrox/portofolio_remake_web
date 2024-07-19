@@ -10,6 +10,21 @@ document.addEventListener(`DOMContentLoaded`, async () => {
     return showPortofolios(resultData);
 });
 
+// OnTap Logout
+const buttonLogout = document.getElementById(`button-logout`);
+buttonLogout.addEventListener(`click`, async () => {
+    const response = await fetch(`/service/logout-user`, {
+        method: `POST`
+    });
+    if(!response.ok) {
+        const errorMessage = await response.text();
+        console.log(`Error`)
+        return alert(`Unable to Logout : ${errorMessage}`);
+    }
+    console.log(`Logout Succeed`)
+    window.location.assign(`/`)
+});
+
 // OnTap Upload
 const buttonUpload = document.getElementById(`button-upload-ptf`);
 buttonUpload.addEventListener(`click`, async () => {
