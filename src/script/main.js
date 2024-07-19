@@ -25,28 +25,13 @@ document.addEventListener(`DOMContentLoaded`, async () => {
     showPortofolios(resultData);
 });
 
-const container = document.getElementById(`parallax-things`)
-const home = document.getElementById(`home`)
-home.addEventListener('mousemove', (e) => {
-    const mouseX = e.pageX;
-    const mouseY = e.pageY;
-
-    
-    const offsetX = mouseX / container.offsetWidth - 0.5;
-    const offsetY = mouseY / container.offsetHeight - 0.5;
-    
-    container.style.transform = `translate(-${offsetX * 20}px, -${offsetY * 20}px)`; 
-    container.style.transition = `.1s`;    
-});
-
 // Additional Functions ============================================================
 
 function showPortofolios(portofolios) {
     const listView = document.getElementById(`lv-projects`);
     portofolios.forEach(prtf => {
         const prtfWrapper = document.createElement(`wrapper-prtf`);
-        prtfWrapper.innerHTML = `
-        
+        prtfWrapper.innerHTML = `        
         <a href="${prtf.source_url}">
                 <div class="image-cards-bp position-relative overflow-hidden">
                     <div class="cards-bp-overlay">
@@ -55,8 +40,7 @@ function showPortofolios(portofolios) {
                     </div>
                     <img src="${prtf.image_url}" alt="" class="card-projects"></img>                    
                 </div>
-            </a>
-        
+            </a>        
         `;
         listView.appendChild(prtfWrapper);
     });

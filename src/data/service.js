@@ -27,6 +27,17 @@ service.use(bodyParser.urlencoded({
   extended: true
 }));
 
+service.post(`/logout-user`, async (req, res) => {
+  try {
+    localStorage.set(`auth`, {
+      isLoggedIn : false
+    });
+    res.status(200).send(`Logout Succeed`);
+  } catch (error) {
+    res.status(500).send(`Client Exception - ${error}`);
+  }
+});
+
 service.get(`/auth-user`, async (req, res) => {
   try {
     
@@ -36,7 +47,9 @@ service.get(`/auth-user`, async (req, res) => {
     if(clientPassword !== password) {
       return res.status(401).send(`Wrong Password`);      
     }    
-    localStorage.set(`auth`, true);
+    localStorage.set(`auth`, {
+      isLoggedIn : true
+    });
     res.status(200).send(`Login Succeed`);
   } catch (error) {
     res.status(500).send(`Client Exception - ${error}`);
