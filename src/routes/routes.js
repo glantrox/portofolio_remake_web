@@ -6,8 +6,13 @@ const middleWare = require(`./middleware.js`)
 
 const basePath = process.cwd() + "/src/views";
 
+const assetpath = process.cwd() + "/assets"
+
 // Main Route
 route.get(`/`, (req, res) => res.sendFile(`${basePath}/main.html`));
+
+// CV Route
+route.get(`/cv-resume`, (req, res) => res.sendFile(`${assetpath}/cv-hamas-azizan.pdf`));
 
 // Dashboard Route
 route.get(`/dashboard`, middleWare.authMiddleware ,(req, res) => res.sendFile(`${basePath}/dashboard.html`));
