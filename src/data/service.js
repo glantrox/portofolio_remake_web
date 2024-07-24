@@ -4,6 +4,7 @@ const service = express.Router();
 // Environments
 const supabaseURL = process.env.SUPABASE_URL;
 const supabaseKey = process.env.SUPABASE_KEY;
+const midtransSecret = process.env.MIDTRANS_SERVER_KEY;
 
 // Multer
 const upload = require('../../api/uploads');
