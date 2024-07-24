@@ -27,6 +27,120 @@ service.use(bodyParser.urlencoded({
   extended: true
 }));
 
+// Transporter
+const transport = require('../utils/nodemailer');
+
+// Invoice Util
+const {
+  InvoiceMail
+} = require('../utils/email_utils');
+const {
+  Readable
+} = require('stream');
+
+service.post(`/send-invoice`, upload.single(`file`), async (req, res) => {
+  try {
+
+    const {
+      to,
+      full_name,
+      customer_id,
+      payment_method,
+      service_name,
+      notes,
+      amount,
+    } = req.body;
+
+
+    const file = req.file;
+    const order_id = `CUST${customer_id}-` + Math.random().toString(36).substr(2, 4).toUpperCase();
+
+    // Validate File
+    if (!file) {
+      return res.status(500).send(`File is Empty`);
+    }
+    console.log(`File is Positive`)
+
+    let paymentData = {
+      item_details: [{
+        id: service_name.toUpperCase().replace(/\s/g, ""),
+        name: service_name,
+        price: amount,
+        quantity: 1
+      }],
+      transaction_details: {
+        order_id: order_id,
+        gross_amount: amount * 1
+      },
+      enabled_payments: [
+        payment_method
+      ]
+    }
+
+    if (payment_method !== "gopay") {
+      const encodedSecret = Buffer.from(midtransSecret).toString(`base64`)
+      const response = await fetch(`${midtransURL}/v1/payment-links`, {
+        method: `POST`,
+        headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/json",
+          "Authorization": `Basic ${encodedSecret}`
+        },
+        body: JSON.stringify(paymentData)
+      })
+
+      if (!response.ok) {
+        console.log(`Midtrans Error : ${response.status}`)
+        return res.status(response.status).send(`Midtrans Server Problem : ${response.statusText}`);
+      }
+
+      const midTrans = await response.json()
+      console.log(`Midtrans Success : ${midTrans.payment_url}`)
+    }
+    const invoiceMail = new InvoiceMail(
+      `388dabd332e807`,
+      to,
+      "Glantrox Project - Application Creation Request Review for " + full_name,
+      full_name,
+      `We've received your Application Creation Request and here is a summary for the same`,
+      order_id,
+      customer_id,
+      payment_method,
+      service_name,
+      notes,
+      midTrans.payment_url,
+      amount
+    )
+
+    console.log(`Email Sending...`)
+    const readableStream = file.buffer.toString('base64')
+
+
+    await transport.sendMail({
+      from: invoiceMail.from,
+      to: invoiceMail.to,
+      subject: invoiceMail.subject,
+      html: invoiceMail.payment_method === "gopay" ? invoiceMail.executeGopay() : invoiceMail.executeMidtrans(),
+      attachments: [{
+        filename: "INVOICE-" + order_id,
+        content: readableStream,
+        encoding: 'base64',
+        contentType: 'application/pdf'
+      }],
+      function (error, info) {
+        if (error) {
+          console.log(`Error Sending Mail`)
+        } else {
+          console.log(`Success Sending Mail`)
+        }
+      }
+    });
+    res.status(200).send(`Invoice sent Successfully`)
+  } catch (error) {
+    res.status(500).send(`Client Exception - ${error}`);
+  }
+});
+
 service.post(`/logout-user`, async (req, res) => {
   try {
     localStorage.set(`auth`, {
