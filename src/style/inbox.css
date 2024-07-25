@@ -155,5 +155,12 @@ ul {
     margin-top: 12px;
 }
 
+/* MODAL */
+#loading-modal {
+    height: 32px;
+    width: 32px;
+    display: none;
+}
+
 
 

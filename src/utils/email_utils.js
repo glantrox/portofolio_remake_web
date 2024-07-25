@@ -1,40 +1,40 @@
 class EmailUtils {
-    constructor(from, to, subject) {
-        this.from = from
-        this.to = to,
-            this.subject = subject
-    }
+  constructor(from, to, subject) {
+    this.from = from
+    this.to = to,
+      this.subject = subject
+  }
 }
 
 class InvoiceMail extends EmailUtils {
-    constructor(
-        from,
-        to,
-        subject,
-        full_name,
-        message,
-        order_id,
-        customer_id,
-        payment_method,
-        service_name,
-        notes = "Invoice details are included in PDF",
-        payment_url,
-        amount
-    ) {
-        super(from, to, subject)        
-        this.full_name = full_name;
-        this.message = message;
-        this.order_id = order_id;
-        this.customer_id = customer_id;
-        this.payment_method = payment_method;
-        this.service_name = service_name;
-        this.notes = notes;
-        this.payment_url = payment_url;
-        this.amount = amount;
-    }
+  constructor({
+    from,
+    to,
+    subject,
+    full_name,
+    message,
+    order_id,
+    customer_id,
+    payment_method,
+    service_name,
+    notes,
+    payment_url,
+    amount
+  }) {
+    super(from, to, subject)
+    this.full_name = full_name;
+    this.message = message;
+    this.order_id = order_id;
+    this.customer_id = customer_id;
+    this.payment_method = payment_method;
+    this.service_name = service_name;
+    this.notes = notes;
+    this.payment_url = payment_url;
+    this.amount = amount;
+  }
 
-    executeGopay() {
-        return `
+  executeGopay() {
+    return `
         <table cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color: #ebeaee; font-family: 'Inter', sans-serif;">
     <tr>
       <td align="center">
@@ -86,10 +86,10 @@ class InvoiceMail extends EmailUtils {
     </tr>
   </table>
         `
-    }
+  }
 
-    executeMidtrans() {
-        return `
+  executeMidtrans() {
+    return `
         <table cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color: #ebeaee; font-family: 'Inter', sans-serif;">
     <tr>
       <td align="center">
@@ -143,10 +143,10 @@ class InvoiceMail extends EmailUtils {
     </tr>
   </table>
         `
-    }
+  }
 }
 
 module.exports = {
-    InvoiceMail : InvoiceMail,
-    EmailUtils : EmailUtils
+  InvoiceMail: InvoiceMail,
+  EmailUtils: EmailUtils
 }

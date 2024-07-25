@@ -40,7 +40,74 @@
             <h3><i class="fa-solid fa-inbox button-sidebar-icon"></i>| Message Inbox</h3>
             <a href="" class="fa-solid fa-file-invoice-dollar header-icon-right" data-bs-toggle="modal"
                 data-bs-target="#exampleModal"></a>
-      
+ 
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">                        
+                        <form>
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Upload Portofolio</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container mt-2">
+                                    <div id="alert-wrapper">
+
+                                    </div>                                    
+                                </div>
+                                <div class="mb-3">
+                                    <label class="col-form-label">Email</label>
+                                    <input type="text" class="form-control" id="email">
+                                </div>                              
+                                <div class="mb-3">
+                                    <label class="col-form-label">Full Name</label>
+                                    <input type="text" class="form-control" id="fullName" >
+                                </div>                              
+                                <div class="mb-3">
+                                    <label class="col-form-label">Customer ID</label>
+                                    <input type="text" class="form-control" id="customerId" >
+                                </div>                              
+                                <div class="mb-3">
+                                    <label class="col-form-label">Payment Method</label>
+                                    <select class="form-select" name="paymentMethod" id="paymentMethod">
+                                        <option value="gopay">Go-Pay</option>
+                                        <option value="bca_va">BCA Virtual Account</option>
+                                    </select>
+                                </div>                              
+                                <div class="mb-3">
+                                    <label class="col-form-label">Service</label>
+                                    <select class="form-select" name="serviceName" id="serviceName">
+                                        <option value="Website Professional">Website Professional</option>
+                                        <option value="Website Basic">Website Basic</option>                                        
+                                    </select>
+                                </div>    
+                                <div class="mb-3">
+                                    <label class="col-form-label">Payment Amount</label>
+                                    <input type="number" class="form-control" id="amount">
+                                </div>                                
+                                <div class="mb-3">
+                                    <label for="formFile" class="col-form-label">Invoice Detail</label>
+                                    <input class="form-control" type="file" id="formFile">
+                                </div>   
+                                <div class="mb-3">
+                                    <label class="col-form-label">Notes</label>
+                                    <input type="text" class="form-control" id="notes">
+                                </div>                              
+                            </div>
+                            <div class="modal-footer">
+                                <img id="loading-modal" src="../../assets/loading-indicator.gif" alt="" style="width: 25px; height: 25px;" >
+                                <div id="wrapper-buttons">
+                                    <button type="button" class="btn btn-secondary "
+                                        data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary" id="button-invoice">Upload</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
  
         </div>
         <hr>

@@ -4,7 +4,6 @@ const service = express.Router();
 // Environments
 const supabaseURL = process.env.SUPABASE_URL;
 const supabaseKey = process.env.SUPABASE_KEY;
-const midtransSecret = process.env.MIDTRANS_SERVER_KEY;
 
 // Multer
 const upload = require('../../api/uploads');
@@ -35,6 +34,9 @@ const transport = require('../utils/nodemailer');
 const {
   InvoiceMail
 } = require('../utils/email_utils');
+
+const { MidtransClient } = require('../utils/midtrans');
+
 const {
   Readable
 } = require('stream');
@@ -50,8 +52,7 @@ service.post(`/send-invoice`, upload.single(`file`), async (req, res) => {
       service_name,
       notes,
       amount,
-    } = req.body;
-
+    } = req.body;    
 
     const file = req.file;
     const order_id = `CUST${customer_id}-` + Math.random().toString(36).substr(2, 4).toUpperCase();
@@ -60,68 +61,49 @@ service.post(`/send-invoice`, upload.single(`file`), async (req, res) => {
     if (!file) {
       return res.status(500).send(`File is Empty`);
     }
-    console.log(`File is Positive`)
+    console.log(`File is Positive`)   
 
-    let paymentData = {
-      item_details: [{
-        id: service_name.toUpperCase().replace(/\s/g, ""),
-        name: service_name,
-        price: amount,
-        quantity: 1
-      }],
-      transaction_details: {
-        order_id: order_id,
-        gross_amount: amount * 1
-      },
-      enabled_payments: [
-        payment_method
-      ]
-    }
-
-    if (payment_method !== "gopay") {
-      const encodedSecret = Buffer.from(midtransSecret).toString(`base64`)
-      const response = await fetch(`${midtransURL}/v1/payment-links`, {
-        method: `POST`,
-        headers: {
-          "Accept": "application/json",
-          "Content-Type": "application/json",
-          "Authorization": `Basic ${encodedSecret}`
-        },
-        body: JSON.stringify(paymentData)
-      })
-
-      if (!response.ok) {
+    let paymentUrl = ""
+    if(payment_method === "gopay") {
+      const midtransClient = new MidtransClient({
+        service_name: service_name,
+        amount: amount,
+        payment_method: payment_method,
+        order_id: order_id,    
+      });
+      const responseMidtrans = await midtransClient.execute();
+      if (!responseMidtrans.ok) {
         console.log(`Midtrans Error : ${response.status}`)
         return res.status(response.status).send(`Midtrans Server Problem : ${response.statusText}`);
       }
-
       const midTrans = await response.json()
-      console.log(`Midtrans Success : ${midTrans.payment_url}`)
+      paymentUrl = midTrans.payment_url;
+     
     }
-    const invoiceMail = new InvoiceMail(
-      `388dabd332e807`,
-      to,
-      "Glantrox Project - Application Creation Request Review for " + full_name,
-      full_name,
-      `We've received your Application Creation Request and here is a summary for the same`,
-      order_id,
-      customer_id,
-      payment_method,
-      service_name,
-      notes,
-      midTrans.payment_url,
-      amount
-    )
+   
+    const invoiceMail = new InvoiceMail({
+      from: `hamasazeezan@gmail.com`,
+      to: to,
+      subject: "Glantrox Project - Application Creation Request Review for " + full_name,
+      full_name: full_name,
+      message: `We've received your Application Creation Request and here is a summary for the same`,
+      order_id : order_id,
+      customer_id: customer_id,
+      payment_method: payment_method,
+      service_name: service_name,
+      notes: notes,
+      paymentUrl: paymentUrl,
+      amount: amount
+    })
 
     console.log(`Email Sending...`)
     const readableStream = file.buffer.toString('base64')
-
-
+    const mailHtml = invoiceMail.payment_method === "gopay" ? invoiceMail.executeGopay() : invoiceMail.executeMidtrans()
     await transport.sendMail({
       from: invoiceMail.from,
       to: invoiceMail.to,
       subject: invoiceMail.subject,
-      html: invoiceMail.payment_method === "gopay" ? invoiceMail.executeGopay() : invoiceMail.executeMidtrans(),
+      html: mailHtml,
       attachments: [{
         filename: "INVOICE-" + order_id,
         content: readableStream,
