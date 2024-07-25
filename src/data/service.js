@@ -64,7 +64,7 @@ service.post(`/send-invoice`, upload.single(`file`), async (req, res) => {
     console.log(`File is Positive`)   
 
     let paymentUrl = ""
-    if(payment_method === "gopay") {
+    if(payment_method !== "gopay") {
       const midtransClient = new MidtransClient({
         service_name: service_name,
         amount: amount,
@@ -76,9 +76,9 @@ service.post(`/send-invoice`, upload.single(`file`), async (req, res) => {
         console.log(`Midtrans Error : ${response.status}`)
         return res.status(response.status).send(`Midtrans Server Problem : ${response.statusText}`);
       }
-      const midTrans = await response.json()
-      paymentUrl = midTrans.payment_url;
-     
+      const midTrans = await responseMidtrans.json()
+      console.log(`Payment Url: ${midTrans.payment_url}\nStatus : ${responseMidtrans.status}`)
+      paymentUrl = midTrans.payment_url;     
     }
    
     const invoiceMail = new InvoiceMail({
