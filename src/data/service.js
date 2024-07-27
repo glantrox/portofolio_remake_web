@@ -1,17 +1,13 @@
 const express = require(`express`);
 const service = express.Router();
 
-// Environments
-const supabaseURL = process.env.SUPABASE_URL;
-const supabaseKey = process.env.SUPABASE_KEY;
-
 // Multer
 const upload = require('../../api/uploads');
 
 // Supabase Client
-const {
-  createClient
-} = require('@supabase/supabase-js');
+const supabaseURL = process.env.SUPABASE_URL;
+const supabaseKey = process.env.SUPABASE_KEY;
+const { createClient } = require('@supabase/supabase-js');
 const supabase = createClient(supabaseURL, supabaseKey);
 
 // Imgur Client
@@ -31,21 +27,16 @@ service.use(bodyParser.urlencoded({
 const transport = require('../utils/nodemailer');
 
 // Invoice Util
-const {
-  InvoiceMail
-} = require('../utils/email_utils');
+const {  InvoiceMail } = require('../utils/email_utils');
 
+// Midtrans Util
 const { MidtransClient } = require('../utils/midtrans');
-
-const {
-  Readable
-} = require('stream');
 
 service.post(`/send-invoice`, upload.single(`file`), async (req, res) => {
   try {
 
     const {
-      to,
+      email,
       full_name,
       customer_id,
       payment_method,
@@ -53,17 +44,13 @@ service.post(`/send-invoice`, upload.single(`file`), async (req, res) => {
       notes,
       amount,
     } = req.body;    
-
+    
     const file = req.file;
     const order_id = `CUST${customer_id}-` + Math.random().toString(36).substr(2, 4).toUpperCase();
-
-    // Validate File
-    if (!file) {
-      return res.status(500).send(`File is Empty`);
-    }
-    console.log(`File is Positive`)   
-
+    const streamFile = file.buffer.toString('base64')
     let paymentUrl = ""
+    
+    // Gets Payment link from Midtrans    
     if(payment_method !== "gopay") {
       const midtransClient = new MidtransClient({
         service_name: service_name,
@@ -72,18 +59,17 @@ service.post(`/send-invoice`, upload.single(`file`), async (req, res) => {
         order_id: order_id,    
       });
       const responseMidtrans = await midtransClient.execute();
-      if (!responseMidtrans.ok) {
-        console.log(`Midtrans Error : ${response.status}`)
+      if (!responseMidtrans.ok) {        
         return res.status(response.status).send(`Midtrans Server Problem : ${response.statusText}`);
       }
-      const midTrans = await responseMidtrans.json()
-      console.log(`Payment Url: ${midTrans.payment_url}\nStatus : ${responseMidtrans.status}`)
-      paymentUrl = midTrans.payment_url;     
+      const midTrans = await responseMidtrans.json()      
+      paymentUrl = midTrans.payment_url;           
     }
    
+    // Construct Invoice Datas 
     const invoiceMail = new InvoiceMail({
       from: `hamasazeezan@gmail.com`,
-      to: to,
+      to: email,
       subject: "Glantrox Project - Application Creation Request Review for " + full_name,
       full_name: full_name,
       message: `We've received your Application Creation Request and here is a summary for the same`,
@@ -92,32 +78,24 @@ service.post(`/send-invoice`, upload.single(`file`), async (req, res) => {
       payment_method: payment_method,
       service_name: service_name,
       notes: notes,
-      paymentUrl: paymentUrl,
+      payment_url: paymentUrl,
       amount: amount
     })
-
-    console.log(`Email Sending...`)
-    const readableStream = file.buffer.toString('base64')
+    
+    // Sends Email through Nodemailer    
     const mailHtml = invoiceMail.payment_method === "gopay" ? invoiceMail.executeGopay() : invoiceMail.executeMidtrans()
     await transport.sendMail({
-      from: invoiceMail.from,
+      from: process.env.NODEMAILER_USER,
       to: invoiceMail.to,
       subject: invoiceMail.subject,
       html: mailHtml,
       attachments: [{
         filename: "INVOICE-" + order_id,
-        content: readableStream,
+        content: streamFile,
         encoding: 'base64',
         contentType: 'application/pdf'
-      }],
-      function (error, info) {
-        if (error) {
-          console.log(`Error Sending Mail`)
-        } else {
-          console.log(`Success Sending Mail`)
-        }
-      }
-    });
+    }]});
+
     res.status(200).send(`Invoice sent Successfully`)
   } catch (error) {
     res.status(500).send(`Client Exception - ${error}`);
@@ -126,7 +104,7 @@ service.post(`/send-invoice`, upload.single(`file`), async (req, res) => {
 
 service.post(`/logout-user`, async (req, res) => {
   try {
-    localStorage.set(`auth`, {
+    localStorage.set(`auth`,{
       isLoggedIn : false
     });
     res.status(200).send(`Logout Succeed`);

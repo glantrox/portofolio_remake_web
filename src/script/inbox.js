@@ -7,14 +7,14 @@ document.addEventListener(`DOMContentLoaded`, async () => {
 // OnTap Send Invoice
 const buttonInvoice = document.getElementById(`button-invoice`);
 buttonInvoice.addEventListener(`click`, async () => {
-   const inputEmail = document.getElementById(`email`).value;
-   const inputFullname = document.getElementById(`fullName`).value;
-   const inputCustomerId = document.getElementById(`customerId`).value;
-   const inputPaymentMethod = document.getElementById(`paymentMethod`).value;
-   const inputService = document.getElementById(`serviceName`).value;
-   const inputPaymentAmount = document.getElementById(`amount`).value;
-   const inputInvoiceDetail = document.getElementById(`formFile`).files[0];
-   const inputNotes = document.getElementById(`notes`).value;
+   const inputEmail = document.getElementById(`email`).value
+   const inputFullname = document.getElementById(`fullName`).value
+   const inputCustomerId = document.getElementById(`customerId`).value
+   const inputPaymentMethod = document.getElementById(`paymentMethod`).value
+   const inputService = document.getElementById(`serviceName`).value
+   const inputPaymentAmount = document.getElementById(`amount`).value
+   const inputInvoiceDetail = document.getElementById(`formFile`).files[0]
+   const inputNotes = document.getElementById(`notes`).value
 
    if (
       !inputEmail || !inputFullname ||
@@ -22,11 +22,11 @@ buttonInvoice.addEventListener(`click`, async () => {
       !inputService || !inputPaymentAmount ||
       !inputInvoiceDetail || !inputNotes
    ) {
-      return showError(`Fill the Blanks!`);
+      return showError(`Fill the Blanks!`)
    }
 
    const formData = new FormData()
-   formData.append(`to`, inputEmail)
+   formData.append(`email`, inputEmail)
    formData.append(`full_name`, inputFullname)
    formData.append(`customer_id`, inputCustomerId)
    formData.append(`payment_method`, inputPaymentMethod)
@@ -44,8 +44,9 @@ buttonInvoice.addEventListener(`click`, async () => {
    if(!response.ok) {
       setLoading(false)
       const errorMessage = await response.text()
-      return showError(errorMessage);
+      return showError(errorMessage)
    }
+   
    setLoading(false)
    await location.reload()
 });
