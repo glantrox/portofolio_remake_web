@@ -116,8 +116,7 @@ service.post(`/logout-user`, async (req, res) => {
 });
 
 service.get(`/auth-user`, async (req, res) => {
-  try {
-    
+  try {    
     const password = req.query.password;
 
     const clientPassword = process.env.CLIENT_PASSWORD    

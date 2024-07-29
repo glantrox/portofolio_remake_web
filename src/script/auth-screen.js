@@ -11,6 +11,6 @@ inputPassword.addEventListener(`keyup`, async (event) => {
             return alert(errorMessage);            
         }                        
         console.log('Succeed Login')
-        window.location.assign(`/dashboard`)
+        window.location.assign(`/admin/dashboard`)
     }
 });
