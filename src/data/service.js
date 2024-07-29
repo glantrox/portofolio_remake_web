@@ -37,26 +37,28 @@ service.post(`/send-invoice`, upload.single(`file`), async (req, res) => {
 
     const {
       email,
-      full_name,
-      customer_id,
-      payment_method,
-      service_name,
+      fullName,
+      customerId,
+      paymentMethod,
+      serviceName,
       notes,
       amount,
     } = req.body;    
     
+    // Construct Necessary Datas
     const file = req.file;
-    const order_id = `CUST${customer_id}-` + Math.random().toString(36).substr(2, 4).toUpperCase();
+    // Generates Random ID
+    const orderId = `CUST${customerId}-` + Math.random().toString(36).substr(2, 4).toUpperCase();
     const streamFile = file.buffer.toString('base64')
     let paymentUrl = ""
     
     // Gets Payment link from Midtrans    
     if(payment_method !== "gopay") {
       const midtransClient = new MidtransClient({
-        service_name: service_name,
+        service_name: serviceName,
         amount: amount,
-        payment_method: payment_method,
-        order_id: order_id,    
+        payment_method: paymentMethod,
+        order_id: orderId,    
       });
       const responseMidtrans = await midtransClient.execute();
       if (!responseMidtrans.ok) {        
@@ -70,13 +72,13 @@ service.post(`/send-invoice`, upload.single(`file`), async (req, res) => {
     const invoiceMail = new InvoiceMail({
       from: `hamasazeezan@gmail.com`,
       to: email,
-      subject: "Glantrox Project - Application Creation Request Review for " + full_name,
-      full_name: full_name,
+      subject: "Glantrox Project - Application Creation Request Review for " + fullName,
+      full_name: fullName,
       message: `We've received your Application Creation Request and here is a summary for the same`,
-      order_id : order_id,
-      customer_id: customer_id,
-      payment_method: payment_method,
-      service_name: service_name,
+      order_id : orderId,
+      customer_id: customerId,
+      payment_method: paymentMethod,
+      service_name: serviceName,
       notes: notes,
       payment_url: paymentUrl,
       amount: amount
@@ -90,7 +92,7 @@ service.post(`/send-invoice`, upload.single(`file`), async (req, res) => {
       subject: invoiceMail.subject,
       html: mailHtml,
       attachments: [{
-        filename: "INVOICE-" + order_id,
+        filename: "INVOICE-" + invoiceMail.order_id,
         content: streamFile,
         encoding: 'base64',
         contentType: 'application/pdf'
