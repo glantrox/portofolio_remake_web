@@ -214,8 +214,7 @@ body {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     cursor: default;
-    transition: .3s;
-    
+    transition: .3s;    
 }
 
 #title-home:hover {
@@ -225,10 +224,22 @@ body {
 
 #subtitle-home {
     margin-top: 8px;
+    max-width: 69%;
     font-size: 1rem;
     font-weight: 300;
     opacity: 0.5;
 }
+
+
+@media (max-width: 835px) {
+    #title-home {
+        font-size: 3rem;
+    }
+    #subtitle-home {
+        font-size: 0.8rem;
+    }
+}
+
 
 @keyframes typing {
     from {
@@ -483,9 +494,15 @@ body {
     line-height: 1.1;
     font-size: 16;
     font-weight: 300;
-    text-align: justify;
+    text-align: start;
     list-style-type: none;
     font-family: "Source Code Pro", monospace;
+}
+
+@media (max-width: 835px) {
+    .content-technology-3 ul li{
+        margin: 1rem;
+    }
 }
 
 .content-technology-3 ul li span {

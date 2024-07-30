@@ -230,6 +230,16 @@ body {
     opacity: 0.5;
 }
 
+@media (max-width: 835px) {
+    #title-home {
+        font-size: 3rem;
+    }
+    #subtitle-home {
+        font-size: 0.8rem;
+    }
+}
+
+
 @keyframes typing {
     from {
         width: 0;
@@ -390,6 +400,8 @@ body {
     border: 0.8px solid rgb(217, 217, 217);
 }
 
+
+
 .content-technology-3 ul p {
     color: white;
     display: flex;
@@ -404,9 +416,15 @@ body {
     line-height: 1.1;
     font-size: 16;
     font-weight: 300;
-    text-align: justify;
+    text-align: start;
     list-style-type: none;
     font-family: "Source Code Pro", monospace;
+}
+
+@media (max-width: 835px) {
+    .content-technology-3 ul li{
+        margin: 1rem;
+    }
 }
 
 .content-technology-3 ul li span {
