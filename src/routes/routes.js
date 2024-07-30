@@ -8,10 +8,10 @@ const assetpath = process.cwd() + "/assets"
 route.get(`/`, (req, res) => res.sendFile(`${basePath}/main.html`));
 
 // Route Front-end Development
-route.get(`/backend-development`, (req, res) => res.sendFile(`${basePath}/info-frontend.html`));
+route.get(`/backend-development`, (req, res) => res.sendFile(`${basePath}/info-backend.html`));
 
 // Route Back-end Development
-route.get(`/frontend-development`, (req, res) => res.sendFile(`${basePath}/info-backend.html`));
+route.get(`/frontend-development`, (req, res) => res.sendFile(`${basePath}/info-frontend.html`));
 
 // CV Route
 route.get(`/cv-resume`, (req, res) => res.sendFile(`${assetpath}/cv-hamas-azizan.pdf`));
