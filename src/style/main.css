@@ -450,7 +450,7 @@ hr {
 
 .subtitle-aboutme {
     font-family: 'Inter', sans-serif;
-    font-size: 22px;
+    font-size: 18px;
     max-width: 550px;
     cursor: default;
     color: #9a9a9a;
@@ -564,7 +564,7 @@ hr {
     font-family: 'Inter', sans-serif;
     font-weight: bold;
     line-height: 95%;
-    cursor: default;
+    
     font-size: 39px;
 }
 
@@ -621,7 +621,7 @@ hr {
     font-family: 'Inter', sans-serif;
     font-weight: lighter;
     line-height: 97%;
-    cursor: default;
+    
     font-size: 18px;
 }
 
@@ -690,6 +690,7 @@ hr {
     height: 244px;
     border-radius: 22px;
     background-color: #838383b9;
+    border: 0.4px solid rgb(158, 158, 158);
     transition: .3s;
 }
 
@@ -728,17 +729,6 @@ hr {
 
 }
 
-.cs-1 {
-    background-image: linear-gradient(-125deg, #44aefa 0px, #005796 100%);
-}
-
-.cs-2 {
-    background-image: linear-gradient(-125deg, #39ca39 0px, #147514 100%);
-}
-
-.cs-3 {
-    background-image: linear-gradient(-125deg, #a8a8fc 0px, #3e3e9f 100%);
-}
 
 .wicon-cs-1 {
     background-image: url(../../assets/icon-photoshop.png);
