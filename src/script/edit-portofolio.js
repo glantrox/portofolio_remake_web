@@ -44,8 +44,7 @@ buttonSubmit.addEventListener(`click`, async (event) => {
         return alert(errorMessage);
     }
     setLoading(false)
-    window.location.assign('/dashboard');
-
+    window.location.assign('/admin/dashboard');
 });
 
 // OnTap Delete
