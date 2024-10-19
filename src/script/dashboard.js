@@ -1,6 +1,5 @@
 // OnStart
 document.addEventListener(`DOMContentLoaded`, async () => {    
-
     const response = await fetch(`/service/get-portofolios`);
     if(!response.ok) {
         const message = await response.text();

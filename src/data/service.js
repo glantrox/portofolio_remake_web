@@ -53,7 +53,7 @@ service.post(`/send-invoice`, upload.single(`file`), async (req, res) => {
     let paymentUrl = ""
     
     // Gets Payment link from Midtrans    
-    if(payment_method !== "gopay") {
+    if(paymentMethod !== "gopay") {
       const midtransClient = new MidtransClient({
         service_name: serviceName,
         amount: amount,
@@ -140,7 +140,7 @@ service.get(`/delete-portofolio`, async (req, res) => {
 
     const response = await supabase.from(`portofolios`).delete().eq(`id`, parseInt(id));
     if (!response.ok) {
-      return res.status(response.status).send(`Internal Server Problem : ${response.statusText}`);
+      return res.status(response.status).send(`Supabase Server Problem : ${response.statusText}`);
     }
     res.status(200).send(`Data Successfully Deleted`);
   } catch (error) {
@@ -181,14 +181,14 @@ service.post(`/update-portofolio`, upload.single(`file`), async (req, res) => {
 
     const response = await supabase.from(`portofolios`).update(bodyForm).eq(`id`, id);
     if (response.error) {
-      return res.status(response.status).send(`Internal Server Problem : ${response.statusText}`);
+      return res.status(response.status).send(`Supabase Server Problem : ${response.statusText}`);
     }
 
     res.status(200).send(`Data Successfully Updated`);
   } catch (error) {
     res.status(500).send(`Client Exception - ${error}`);
   }
-});
+});``
 
 // Get Portofolio Data by ID
 service.get(`/get-portofolio`, async (req, res) => {
@@ -197,7 +197,7 @@ service.get(`/get-portofolio`, async (req, res) => {
 
     const response = await supabase.from(`portofolios`).select(`*`).eq(`id`, parseInt(id));
     if (response.error) {
-      return res.status(response.status).send(`Internal Server Problem : ${response.statusText}`);
+      return res.status(500).send(`Supabase Server Problem : ${response.statusText}`);
     }
     const dataResult = response.data;
     res.send(dataResult);
@@ -211,7 +211,7 @@ service.get(`/get-portofolios`, async (req, res) => {
   try {
     const response = await supabase.from(`portofolios`).select(`*`);
     if (response.error) {
-      return res.status(response.status).send(`Internal Server Problem : ${response.message}`);
+      return res.status(response.status).send(`Supabase Server Problem : ${response.statusText}`);
     }
     const dataResult = response.data;
     res.send(dataResult);
@@ -250,7 +250,7 @@ service.post('/upload-portofolio', upload.single(`file`), async (req, res) => {
 
     if (error) {
       console.error(`Error Supabase : ${error}`);
-      return res.status(500).send(`Internal Server Problem : ${error.message}`);
+      return res.status(500).send(`Supabase Server Problem : ${error.message}`);
     }
     return res.send('Portofolio Successfully Uploaded!');
   } catch (error) {
