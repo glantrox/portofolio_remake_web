@@ -211,7 +211,7 @@ service.get(`/get-portofolios`, async (req, res) => {
   try {
     const response = await supabase.from(`portofolios`).select(`*`);
     if (response.error) {
-      return res.status(response.status).send(`Supabase Server Problem : ${response.statusText}`);
+      return res.status(500).send(`Supabase Server Problem : ${response.status}`);
     }
     const dataResult = response.data;
     res.send(dataResult);
