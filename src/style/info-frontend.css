@@ -458,6 +458,14 @@ body {
     flex-direction: column;
 }
 
+.order-button {
+    color: #1f5088;
+    transition: .3s;
+}
+.order-button:hover {
+    color: #3585e0;
+    transition: .3s;
+}
 
 /* Technology - Why Choose Us */
 
